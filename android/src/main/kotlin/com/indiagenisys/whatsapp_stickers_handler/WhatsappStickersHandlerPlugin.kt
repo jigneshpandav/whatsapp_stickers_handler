@@ -39,7 +39,7 @@ class WhatsappStickersHandlerPlugin : FlutterPlugin, MethodCallHandler, Activity
     }
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-
+        this.result = result
         when (call.method) {
             "platformVersion" -> {
                 result.success("Android ${android.os.Build.VERSION.RELEASE}")
@@ -68,8 +68,6 @@ class WhatsappStickersHandlerPlugin : FlutterPlugin, MethodCallHandler, Activity
                 } catch (e: Exception) {
                     e.message?.let { Log.e("TEST", it) }
                 }
-                Log.e("TEST", "Inside launch whatsapp!")
-
             }
             "addStickerPack" -> {
                 try {
@@ -115,14 +113,16 @@ class WhatsappStickersHandlerPlugin : FlutterPlugin, MethodCallHandler, Activity
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {
         activity = binding.activity
         context = binding.activity.applicationContext;
+        binding.addActivityResultListener(this)
     }
 
     override fun onDetachedFromActivityForConfigChanges() {
-        TODO("Not yet implemented")
+        activity = null
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-        TODO("Not yet implemented")
+        activity = null
+        binding.addActivityResultListener(this)
     }
 
     override fun onDetachedFromActivity() {
@@ -137,26 +137,26 @@ class WhatsappStickersHandlerPlugin : FlutterPlugin, MethodCallHandler, Activity
                 if (data != null) {
                     val validationError = data.getStringExtra("validation_error")
                     if (validationError != null) {
-                        this.result?.error("error", validationError, "")
+                        result?.error("error", validationError, "")
                     }
                 } else {
-                    this.result?.error("cancelled", "cancelled", "")
+                    result?.error("cancelled", "cancelled", "")
                 }
             } else if (resultCode == Activity.RESULT_OK) {
                 if (data != null) {
                     val bundle = data.extras!!
                     if (bundle!!.containsKey("add_successful")) {
-                        this.result?.success("add_successful")
+                        result?.success("add_successful")
                     } else if (bundle!!.containsKey("already_added")) {
-                        this.result?.error("already_added", "already_added", "")
+                        result?.error("already_added", "already_added", "")
                     } else {
-                        this.result?.success("success")
+                        result?.success("success")
                     }
                 } else {
-                    this.result?.success("success")
+                    result?.success("success")
                 }
             } else {
-                this.result?.success("unknown")
+                result?.success("unknown")
             }
         }
         return true

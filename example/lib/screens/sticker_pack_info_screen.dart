@@ -101,7 +101,7 @@ class _StickerPackInfoScreenState extends State<StickerPackInfoScreen> {
           try {
             final WhatsappStickersHandler _whatsappStickersHandler =
                 WhatsappStickersHandler();
-            await _whatsappStickersHandler.addStickerPack(
+            var result = await _whatsappStickersHandler.addStickerPack(
               stickerPack.identifier,
               stickerPack.name as String,
               stickerPack.publisher as String,
@@ -112,8 +112,11 @@ class _StickerPackInfoScreenState extends State<StickerPackInfoScreen> {
               stickerPack.animatedStickerPack ?? false,
               stickers,
             );
+            print("RESULT $result");
           } on WhatsappStickersException catch (e) {
-            print(e.cause);
+            print("INSIDE WhatsappStickersException ${e.cause}");
+          } catch (e) {
+            print("Exception ${e.toString()}");
           }
         },
       );

@@ -46,7 +46,7 @@ class WhatsappStickersHandler {
   }
 
   /// Add a sticker pack to whatsapp.
-  Future<void> addStickerPack(
+  Future<dynamic> addStickerPack(
     identifier,
     String name,
     String publisher,
@@ -68,7 +68,7 @@ class WhatsappStickersHandler {
       payload['licenseAgreementWebsite'] = licenseAgreementWebsite;
       payload['animatedStickerPack'] = animatedStickerPack;
       payload['stickers'] = stickers;
-      await _channel.invokeMethod('addStickerPack', payload);
+      return await _channel.invokeMethod('addStickerPack', payload);
     } on PlatformException catch (e) {
       switch (e.code) {
         case WhatsappStickersFileNotFoundException.CODE:
@@ -102,7 +102,6 @@ class WhatsappStickerImageHandler {
   WhatsappStickerImageHandler._internal(this.path);
 
   factory WhatsappStickerImageHandler.fromAsset(String asset) {
-    print("Assets $asset");
     return WhatsappStickerImageHandler._internal('assets://$asset');
   }
 

@@ -178,11 +178,8 @@ public class StickerContentProvider extends ContentProvider {
 
     private Cursor getCursorForSingleStickerPack(@NonNull Uri uri) {
         final String identifier = uri.getLastPathSegment();
-        Log.e("DEBUG SICKERS LENGHT", getStickerPackList().size()+"");
         for (StickerPack stickerPack : getStickerPackList()) {
-            Log.e("DEBUG PACK", identifier+ " "+stickerPack.identifier);
             if (Objects.requireNonNull(identifier).equals(stickerPack.identifier)) {
-                Log.e("DEBUG PACK INSIDE IF", identifier+ " "+stickerPack.identifier);
                 return getStickerPackInfo(uri, Collections.singletonList(stickerPack));
             }
         }
@@ -207,7 +204,6 @@ public class StickerContentProvider extends ContentProvider {
                         AVOID_CACHE,
                         ANIMATED_STICKER_PACK
                 });
-        Log.d("getStickerPackInfo", stickerPackList.toString());
         for (StickerPack stickerPack : stickerPackList) {
             MatrixCursor.RowBuilder builder = cursor.newRow();
             builder.add(stickerPack.identifier);

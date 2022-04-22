@@ -169,7 +169,7 @@ public class ConfigFileManager {
         try {
             FileWriter writer = new FileWriter(f);
             writer.write(jsonString);
-            Log.d("WaStickerLog", "StickerData WriteToConfig : " + jsonString);
+//            Log.d("WaStickerLog", "StickerData WriteToConfig : " + jsonString);
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
