@@ -87,7 +87,7 @@ public class ConfigFileManager {
                 for (int i = 0; i < s.getStickers().size(); i++) {
                     Sticker sticker = s.getStickers().get(i);
                     if (!stickerPack.getStickers().contains(sticker)) {
-                        String fname = sticker.imageFileName.replace("_DSP_", File.separator);
+                        String fname = sticker.imageFileName.replace("._.", File.separator);
                         //Log.e("WaStickerLog", "Sticker  exist => " + new File(fname).exists());
                         try {
                             new File(fname).delete();
@@ -114,7 +114,7 @@ public class ConfigFileManager {
             name = name.replace("/", "_SSP_");
         } else if (name.contains("file://")) {
             name = name.replace("file://", "");
-            name = name.replace("/", "_DSP_");
+            name = name.replace("/", "._.");
         }
         return name;
     }

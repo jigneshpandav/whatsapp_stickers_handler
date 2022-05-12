@@ -145,7 +145,7 @@ class StickerPackLoader {
 
     static private AssetFileDescriptor fetchNonAssetFile(final String fileName) {
         try {
-            String fname = fileName.replace("_DSP_", File.separator);
+            String fname = fileName.replace("._.", File.separator);
             final File file = new File(fname);
             return new AssetFileDescriptor(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY), 0,
                     AssetFileDescriptor.UNKNOWN_LENGTH);
@@ -175,7 +175,7 @@ class StickerPackLoader {
         final ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         if (inputStream == null) {
             String stickerFileName = name.replace("_SSP_",File.separator);
-            stickerFileName = stickerFileName.replace("_DSP_", File.separator);
+            stickerFileName = stickerFileName.replace("._.", File.separator);
             throw new IOException("cannot read sticker asset:" + stickerFileName);
         }
         int read;

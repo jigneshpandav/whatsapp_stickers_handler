@@ -97,7 +97,7 @@ class StickerPackValidator {
             }
         } catch (IOException e) {
             String trayFileName = stickerPack.trayImageFile.replace("_SSP_",File.separator);
-            trayFileName = trayFileName.replace("_DSP_",File.separator);
+            trayFileName = trayFileName.replace("._.",File.separator);
             throw new InvalidPackException(InvalidPackException.FILE_NOT_FOUND,"Cannot open tray image, " + trayFileName);
         }
         final List<Sticker> stickers = stickerPack.getStickers();
@@ -144,7 +144,7 @@ class StickerPackValidator {
             }*/
         } catch (IOException e) {
             String stickerFileName = fileName.replace("_SSP_",File.separator);
-            stickerFileName = stickerFileName.replace("_DSP_", File.separator);
+            stickerFileName = stickerFileName.replace("._.", File.separator);
 
             throw new InvalidPackException(InvalidPackException.FILE_NOT_FOUND,"cannot open sticker file: sticker pack identifier:" + identifier + ", filename:" + stickerFileName+"\n\n"+e.getMessage());
         }

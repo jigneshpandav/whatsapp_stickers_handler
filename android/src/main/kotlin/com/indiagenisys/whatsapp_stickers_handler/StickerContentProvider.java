@@ -277,7 +277,7 @@ public class StickerContentProvider extends ContentProvider {
 
     private AssetFileDescriptor fetchNonAssetFile(final Uri uri, final String fileName, final String identifier) {
         try {
-            String fname = fileName.replace("_DSP_", File.separator);
+            String fname = fileName.replace("._.", File.separator);
             final File file = new File(fname);
             return new AssetFileDescriptor(ParcelFileDescriptor.open(file, ParcelFileDescriptor.MODE_READ_ONLY), 0,
                     AssetFileDescriptor.UNKNOWN_LENGTH);
