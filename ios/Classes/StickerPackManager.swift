@@ -91,7 +91,7 @@ class StickerPackManager {
                     let roundedSize = round((Double(imageFileSize) / 1024) * 100) / 100;
                     fatalError("\(packTrayImageFileName): \(roundedSize) KB is bigger than the max tray image file size (\(Limits.MaxTrayImageFileSize / 1024) KB).")
                 } catch StickerPackError.incorrectImageSize(let imageDimensions) {
-                    fatalError("\(packTrayImageFileName): \(imageDimensions) is not compliant with tray dimensions requirements, \(Limits.TrayImageDimensions).")
+                    fatalError("1 \(packTrayImageFileName): \(imageDimensions) is not compliant with tray dimensions requirements, \(Limits.TrayImageDimensions).")
                 } catch StickerPackError.animatedImagesNotSupported {
                     fatalError("\(packTrayImageFileName) is an animated image. Animated images are not supported.")
                 } catch StickerPackError.stringTooLong {
@@ -117,7 +117,7 @@ class StickerPackManager {
                         let roundedSize = round((Double(imageFileSize) / 1024) * 100) / 100;
                         fatalError("\(filename): \(roundedSize) KB is bigger than the max file size (\(Limits.MaxStickerFileSize / 1024) KB).")
                     } catch StickerPackError.incorrectImageSize(let imageDimensions) {
-                        fatalError("\(filename): \(imageDimensions) is not compliant with sticker images dimensions, \(Limits.ImageDimensions).")
+                        fatalError("2 \(filename): \(imageDimensions) is not compliant with sticker images dimensions, \(Limits.ImageDimensions).")
                     } catch StickerPackError.animatedImagesNotSupported {
                         fatalError("\(filename) is an animated image. Animated images are not supported.")
                     } catch StickerPackError.tooManyEmojis {

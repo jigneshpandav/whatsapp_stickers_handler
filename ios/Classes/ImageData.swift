@@ -138,9 +138,9 @@ class ImageData {
                 throw StickerPackError.imageTooBig(imageData.bytesSize)
             }
 
-            // guard imageData.image!.size == Limits.ImageDimensions else {
-            //     throw StickerPackError.incorrectImageSize(imageData.image!.size)
-            // }
+            guard imageData.image!.size == Limits.ImageDimensions else {
+                throw StickerPackError.incorrectImageSize(imageData.image!.size)
+            }
         }
 
         return imageData

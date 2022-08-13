@@ -76,7 +76,7 @@ public class SwiftWhatsappStickersHandlerPlugin: NSObject, FlutterPlugin {
             result(FlutterError(code: "IMAGE_TOO_BIG", message: "\(trayImageFileName): \(roundedSize) KB is bigger than the max file size (\(Limits.MaxStickerFileSize / 1024) KB).", details: nil))
             return
         } catch StickerPackError.incorrectImageSize(let imageDimensions) {
-            result(FlutterError(code: "INCORRECT_IMAGE_SIZE", message: "\(trayImageFileName): \(imageDimensions) is not compliant with sticker images dimensions, \(Limits.ImageDimensions).", details: nil))
+            result(FlutterError(code: "INCORRECT_IMAGE_SIZE", message: "3 \(trayImageFileName): \(imageDimensions) is not compliant with sticker images dimensions, \(Limits.ImageDimensions).", details: nil))
             return
         } catch StickerPackError.animatedImagesNotSupported {
             result(FlutterError(code: "ANIMATED_IMAGES_NOT_SUPPORTED", message: "\(trayImageFileName) is an animated image. Animated images are not supported.", details: nil))
