@@ -130,17 +130,17 @@ class ImageData {
                 throw StickerPackError.imageTooBig(imageData.bytesSize)
             }
 
-            guard imageData.image!.size == Limits.TrayImageDimensions else {
-                throw StickerPackError.incorrectImageSize(imageData.image!.size)
-            }
+            // guard imageData.image!.size == Limits.TrayImageDimensions else {
+            //     throw StickerPackError.incorrectImageSize(imageData.image!.size)
+            // }
         } else {
             guard imageData.bytesSize <= Limits.MaxStickerFileSize else {
                 throw StickerPackError.imageTooBig(imageData.bytesSize)
             }
 
-            guard imageData.image!.size == Limits.ImageDimensions else {
-                throw StickerPackError.incorrectImageSize(imageData.image!.size)
-            }
+            // guard imageData.image!.size == Limits.ImageDimensions else {
+            //     throw StickerPackError.incorrectImageSize(imageData.image!.size)
+            // }
         }
 
         return imageData
