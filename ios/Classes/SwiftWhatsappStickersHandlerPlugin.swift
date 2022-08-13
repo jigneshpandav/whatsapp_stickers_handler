@@ -12,7 +12,7 @@ public class SwiftWhatsappStickersHandlerPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-        if (call.method != "sendToWhatsApp") {
+        if (call.method != "addStickerPack") {
             result(FlutterError(code: "INVALID_METHOD", message: "Invalid method", details: nil))
             return
         }
